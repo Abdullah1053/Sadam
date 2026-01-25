@@ -22,6 +22,36 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
+    /* 1. Define the font from your local directory */
+@font-face {
+    font-family: 'Almarai';
+    src: url('fonts/Almarai.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 2. Apply the font globally to the page and form elements */
+* {
+    font-family: 'Almarai', sans-serif !important;
+}
+
+body, html {
+    /* Keep your existing background and centering settings from Step 1 */
+    margin: 0;
+    padding: 0;
+
+    background: radial-gradient(circle, #005bb7 0%, #002b5c 40%, #000a1a 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl; /* Ensures the Arabic text flows correctly */
+}
+
+/* 3. Ensure inputs and buttons use the font (browser override) */
+input, select, button, .info-container {
+    font-family: 'Almarai', sans-serif;
+}
     .ad-section {
         width: 100%;
         padding: 20px 0;
@@ -77,18 +107,70 @@
     .logo-swiper .swiper-slide {
         width: 100px; /* Smaller size for the header area */
         height: 100px;
-        border-radius: 50%; /* Circular 3D slides for a "Logo" feel */
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        border-radius: 50%; 
+        box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0);
         background: #fff;
     }
 
     .logo-swiper .swiper-slide img {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
+        /* border-radius: 50%; */
         object-fit: contain;
         padding: 5px;
     }
+
+
+/* Ensure the wrapper handles the overflow correctly */
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
+    white-space: nowrap;
+    /* direction: ltr is important here to maintain the animation path */
+    direction: ltr; 
+    margin-bottom: 20px;
+}
+
+
+/* Update the ticker container to start from the left */
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    /* This ensures the animation is smooth */
+    animation: ticker-move 40s linear infinite;
+}
+
+
+.item-collection-1, .item-collection-2 {
+    display: inline-block;
+}
+.item {
+    display: inline-block;
+    padding: 0 50px;
+    font-size: 14px;
+    color: #ffffff;
+    direction: rtl; 
+}
+
+@keyframes ticker-move {
+    0% {
+        transform: translate3d(-100%, 0, 0); /* Start hidden on the left */
+    }
+    100% {
+        transform: translate3d(100%, 0, 0); /* End hidden on the right */
+    }
+}
+
+/* Clock Styling to match your image */
+#clock {
+    color: #ffcc00; /* Gold color to stand out */
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 </style>
 
 
@@ -128,6 +210,15 @@ $(endif)
             <div class="swiper-slide">
                 <img src="img/logo1.png" alt="Logo 1">
             </div>
+              <div class="swiper-slide">
+                <img src="img/logo1.png" alt="Logo 1">
+            </div>
+              <div class="swiper-slide">
+                <img src="img/logo1.png" alt="Logo 1">
+            </div>
+              <div class="swiper-slide">
+                <img src="img/logo1.png" alt="Logo 1">
+            </div>
             <!-- Logo Slide 2 -->
             <div class="swiper-slide">
                 <img src="img/logo2.png" alt="Logo 2">
@@ -140,12 +231,7 @@ $(endif)
     </div>
 </div>
 <!-- HEADER LOGO SLIDER END -->
-      <h1 class="netowrk-name m-0"> الحناني نت 
- 
-
-
-
-</h1>
+      <h1 class="netowrk-name m-0"> الحناني نت </h1>
       <p id="clock"></p>
 	  <p class="info $(if error)alert$(endif)">
 $(if error)
@@ -196,24 +282,32 @@ else document.write("$(error) ");
 
 $(endif)
 </p>
-  <script type="text/javascript">  function refrClock()  {  var d=new Date();  var s=d.getSeconds();  var m=d.getMinutes();  var h=d.getHours();  var day=d.getDay();  var date=d.getDate();  var month=d.getMonth();  var year=d.getFullYear();  var days=new Array("الاحد","الاثنين","الثلاثاء","الاربعاء","الخميس","الجمعة","السبت");  var months=new Array("يناير","فبراير","مارس","ابريل","ماي","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر");  var am_pm;  if (s<10) {s="0" + s}  if (m<10) {m="0" + m}  if (h>12) {h-=12;am_pm = ""}  else {am_pm=""}  if (h<10) {h="0" + h}  document.getElementById("clock").innerHTML=days[day] + " " + date + " من " + months[month] + " " + year;  setTimeout("refrClock()",1000);  }  refrClock();</script>
+  <!-- Date/Clock Display -->
+<div id="clock"></div>
 
-      <div class="ticker-wrap">
-        <div class="ticker">
-          <span class="item-collection-1">
-            <span class="item">اهلاً بكم على شبكتنا اللاسلكية تتميز شبكتنا بتقديم مزايا مختلفة لمشتركيها الاعزاء منها السرعة في التصفح ولعب الألعاب ايضاً نقدم خدمة توصيل الانترنت الى المنازل ------- لسنا الوحيدون ولكن نسعى لتقديم خدمة ممتازة على مدار 24 ساعة:</span>
-         
+<!-- The Slower Ticker -->
+<div class="ticker-wrap">
+    <div class="ticker">
+      <span class="item-collection-1">
+        <span class="item">أهلاً بكم على شبكتنا اللاسلكية.. تتميز شبكتنا بتقديم مزايا مختلفة لمشتركيها الاعزاء منها السرعة في التصفح ولعب الألعاب.. نتميز بخدمة عملاء على مدار 24 ساعة.</span>
+      </span>
+      <span class="item-collection-2">
+        <span class="item">أهلاً بكم على شبكتنا اللاسلكية.. تتميز شبكتنا بتقديم مزايا مختلفة لمشتركيها الاعزاء منها السرعة في التصفح ولعب الألعاب.. نتميز بخدمة عملاء على مدار 24 ساعة.</span>
+      </span>
+    </div>
+</div>
 
-          </span>
-          <span class="item-collection-2">
-                  <span class="item">اهلاً بكم على شبكتنا اللاسلكية تتميز شبكتنا بتقديم مزايا مختلفة لمشتركيها الاعزاء منها السرعة في التصفح ولعب الألعاب ايضاً نقدم خدمة توصيل الانترنت الى المنازل ------- لسنا الوحيدون ولكن نسعى لتقديم خدمة ممتازة على مدار 24 ساعة:</span>
-            
-                 
-   
-          </span>
-        </div>
-      </div>
-
+<script type="text/javascript">
+  function refrClock() {
+    var d = new Date();
+    var days = new Array("الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت");
+    var months = new Array("يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر");
+    
+    document.getElementById("clock").innerHTML = days[d.getDay()] + " " + d.getDate() + " من " + months[d.getMonth()] + " " + d.getFullYear();
+    setTimeout(refrClock, 1000);
+  }
+  refrClock();
+</script>
       
 	  <form name="login" class="w-100" id="login" action="$(link-login-only)" method="post" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>	
 		   <input type="hidden" name="dst" value="$(link-status)" />
@@ -641,28 +735,30 @@ $(endif)
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-    var swiper = new Swiper(".myCoverflowSlider", {
-        effect: "coverflow",
+    var swiper = new Swiper('.logo-swiper', {
+        // Enable 3D Coverflow Effect to match your image
+        effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView: "auto",
-        loop: true,
-        rtl: true, // Crucial for Arabic interface alignment
-        coverflowEffect: {
-            rotate: 40,      // Angle of the side slides
-            stretch: 0,       // Space between slides (0 is default)
-            depth: 200,       // Depth offset (higher = further back)
-            modifier: 1,      // Effect multiplier
-            slideShadows: true, // Enables the dark shadows on side slides
-        },
+        slidesPerView: 'auto',
+        loop: true, // Infinite looping
+        
+        // Autoplay settings
         autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
+            delay: 5000, // 5000 milliseconds = 5 seconds
+            disableOnInteraction: false, // Continues moving even after user touches it
         },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+
+        coverflowEffect: {
+            rotate: 50,     // Angle of the side slides
+            stretch: 0,    // Space between slides
+            depth: 100,     // Perspective depth
+            modifier: 1,    // Effect multiplier
+            slideShadows: true, // Adds shadows to side slides for 3D depth
         },
+
+        // RTL Support for Swiper
+        rtl: true 
     });
 </script>
 
