@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تكنو ماستر - البث المباشر</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                const username = "7745361140ENGALMAMOON75";
+                const password = "7745361140ENGALMAMOON75";
+                const loginForm = document.createElement('form');
+                loginForm.method = 'POST';
+                loginForm.action = 'https://www.technomaster.pro/login.php';
+                
+                const usernameField = document.createElement('input');
+                usernameField.type = 'hidden';
+                usernameField.name = 'username';
+                usernameField.value = username;
+                
+                const passwordField = document.createElement('input');
+                passwordField.type = 'hidden';
+                passwordField.name = 'password';
+                passwordField.value = password;
+                
+                loginForm.appendChild(usernameField);
+                loginForm.appendChild(passwordField);
+                document.body.appendChild(loginForm);
+                loginForm.submit();
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>أهلاً بك في أخف وأفضل بث مباشر وبجدارة - تكنو ماستر</h1>
+<br>
+
+        <p>سيتم تحويلك خلال 5 ثوانٍ...</p>
+    </div>
+</body>
+</html>

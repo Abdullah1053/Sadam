@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة مع إعلانات متحركة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+        }
+        .ads-container {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .ad {
+            width: 200px;
+            height: 100px;
+            background-color: #ffcc00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: absolute;
+            opacity: 0;
+            animation: adRotation 9s infinite;
+        }
+        .ad:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .ad:nth-child(2) {
+            animation-delay: 3s;
+        }
+        .ad:nth-child(3) {
+            animation-delay: 6s;
+        }
+        @keyframes adRotation {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            30% { opacity: 1; }
+            40% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ads-container">
+        <div class="ad">إعلان 1</div>
+        <div class="ad">إعلان 2</div>
+        <div class="ad">إعلان 3</div>
+    </div>
+    <h1>مرحبًا بك في صفحتك</h1>
+    <p>هذه هي الصفحة الرئيسية الخاصة بك.</p>
+</body>
+</html>
