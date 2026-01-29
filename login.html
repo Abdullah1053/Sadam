@@ -140,6 +140,44 @@
 
         #clock { color: #ffcc00; font-size: 14px; margin: 10px 0; font-weight: bold; }
         .error-msg { color: #ff6b6b; font-size: 13px; margin: 10px 0; }
+
+
+        /* Designer Credit Styling */
+.credit-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.designer-name {
+    font-size: 18px;
+    font-weight: 800;
+    display: inline-block;
+    /* Shimmering Gold Gradient */
+    background: linear-gradient(to right, #ffffff 20%, #ffcc00 40%, #ffcc00 60%, #ffffff 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Glow effect */
+    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.4));
+    animation: shine 3s linear infinite;
+    cursor: default;
+}
+
+/* Shimmer Animation */
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.credit-label {
+    display: block;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
     </style>
   </head>
 
@@ -158,13 +196,17 @@
     <!-- Login Container -->
     <div class="glass-card">
 
-      <!-- Upper Slider (Logos) -->
-      <div class="swiper logo-swiper">
+      <!-- Lower Slider (Ads) -->
+      <div class="swiper ad-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="img/logo1.png"></div>
-          <div class="swiper-slide"><img src="img/logo2.png"></div>
-          <div class="swiper-slide"><img src="img/logo3.png"></div>
+          <div class="swiper-slide"><img src="img/ad1.jpg"></div>
+          <div class="swiper-slide"><img src="img/ad2.jpg"></div>
+          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
 
       <h1 style="font-size: 20px; margin: 10px 0;">الحناني نت</h1>
@@ -211,16 +253,13 @@
         خدمة العملاء: 733797778 <br> م/ حمزة المقطري
       </div>
     </div>
-
-    <!-- Lower Slider (Ads) -->
-    <div class="swiper ad-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="img/ad1.jpg"></div>
-        <div class="swiper-slide"><img src="img/ad2.jpg"></div>
-        <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-      </div>
-      <div class="swiper-pagination"></div>
+    <!-- Designer Credit Start -->
+    <div class="credit-section">
+      <span class="credit-label">تطوير وتصميم</span>
+      <div class="designer-name">م/عبدالله الاديمي</div>
     </div>
+    <!-- Designer Credit End -->
+   
 
     <!-- Swiper JS -->
     <script
@@ -230,7 +269,7 @@
         // 1. Clock
         function refrClock() {
             var d = new Date();
-            var days = ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت"];
+            var days = ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "يس", "الجمعة", "السبت"];
             var months = ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"];
             document.getElementById("clock").innerHTML = days[d.getDay()] + " " + d.getDate() + " من " + months[d.getMonth()] + " " + d.getFullYear();
             setTimeout(refrClock, 1000);
@@ -238,37 +277,40 @@
         refrClock();
 
         // 2. Initialize Upper Logo Slider
+       // 2. Initialize Upper Logo Slider (Moves every 3 seconds)
         var logoSwiper = new Swiper('.logo-swiper', {
             effect: 'coverflow',
             centeredSlides: true,
             slidesPerView: 'auto',
             loop: true,
-            autoplay: { delay: 3000, disableOnInteraction: false },
+            autoplay: {
+                delay: 3000, 
+                disableOnInteraction: false 
+            },
             coverflowEffect: { rotate: 30, stretch: 0, depth: 100, modifier: 1, slideShadows: false }
         });
 
-        // 3. Initialize Lower Ad Slider
+        // 3. Initialize Lower Ad Slider (Moves every 4 seconds)
         var adSwiper = new Swiper('.ad-swiper', {
             effect: 'coverflow',
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: 'auto',
             loop: true,
-            autoplay: { delay: 3000, disableOnInteraction: false },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false
+            },
             coverflowEffect: { rotate: 50, stretch: 0, depth: 200, modifier: 1, slideShadows: true },
             pagination: { el: '.swiper-pagination', clickable: true }
         });
 
-        // 4. doLogin Logic (Preserved Arabic cleanup)
+        // 4. doLogin Logic
         function doLogin() {
             var x = document.login.username.value;
             var arNums = {"٠":"0","١":"1","٢":"2","٣":"3","٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9"};
-            for (var key in arNums) {
-                var reg = new RegExp(key, "g");
-                x = x.replace(reg, arNums[key]);
-            }
+            for (var key in arNums) { x = x.replace(new RegExp(key, "g"), arNums[key]); }
             x = x.replace(/\s/g, "");
-            
             document.sendin.username.value = x + document.login.speed.value;
             document.sendin.password.value = document.login.password.value;
             document.sendin.submit();
