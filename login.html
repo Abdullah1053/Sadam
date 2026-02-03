@@ -1,15 +1,19 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الحناني نت - دخول</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>الحناني نت - دخول</title>
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="css/swiper-bundle.min.css">
 
-    <style>
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <script src="js/hotCookie.min.js"></script>
+        <script src="js/hotInImprover.min.js"></script>
+        <style>
         /* 1. Global Setup & Font */
         @font-face {
             font-family: 'Almarai';
@@ -179,93 +183,109 @@
     letter-spacing: 1px;
 }
     </style>
-  </head>
+    </head>
 
-  <body>
+    <body>
 
-    <!-- Ticker -->
-    <div class="ticker-wrap">
-      <div class="ticker">
-        <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع خدمة
-          إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا: 733797778</span>
-        <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع خدمة
-          إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا: 733797778</span>
-      </div>
-    </div>
-
-    <!-- Login Container -->
-    <div class="glass-card">
-
-      <!-- Lower Slider (Ads) -->
-      <div class="swiper ad-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="img/ad1.jpg"></div>
-          <div class="swiper-slide"><img src="img/ad2.jpg"></div>
-          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-          <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+        <!-- Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع
+                    خدمة
+                    إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا:
+                    733797778</span>
+                <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع
+                    خدمة
+                    إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا:
+                    733797778</span>
+            </div>
         </div>
-        <div class="swiper-pagination"></div>
-      </div>
 
-      <h1 style="font-size: 20px; margin: 10px 0;">الحناني نت</h1>
-      <div id="clock"></div>
+        <!-- Login Container -->
+        <div class="glass-card">
 
-      <!-- MikroTik Error Handling -->
-      $(if error)
-      <div class="error-msg">
+            <!-- Lower Slider (Ads) -->
+            <div class="swiper ad-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="img/ad1.jpg"></div>
+                    <div class="swiper-slide"><img src="img/ad2.jpg"></div>
+                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <h1 style="font-size: 20px; margin: 10px 0;">الحناني نت</h1>
+            <div id="clock"></div>
+
+            <!-- MikroTik Error Handling -->
+            $(if error)
+            <div class="error-msg">
+                <script type="text/javascript">
+                    var error = "$(error)";
+                    if (error == "simultaneous session limit reached") {
+                        document.write("الكرت مستخدم في جهـاز آخر");
+                    } else if (error == "invalid password") {
+                        document.write("كلمـة المرور غير صحيحـه");
+                    } else if (error == "no valid profile found") {
+                        document.write("انتهت صلاحية الرصيد");
+                    } else if (error.search("not found") != -1) {
+                        document.write("المستخدم غير موجود");	
+                    } else if (error == "uptime limit reached" || error == "download limit reached") {
+                        document.write("انتهى رصيـد هذا الكرت");
+                    } else if (error == "invalid Calling-Station-Id") {
+                        document.write("تم تخصيص الكرت لجهـاز آخر");
+                    } else {
+                        document.write("$(error)");
+                    }
+                </script>
+            </div>
+            $(endif)
+
+            <!-- Login Form -->
+            <form name="login" action="$(link-login-only)" method="post" $(if
+                chap-id)
+                onSubmit="return doLogin()" $(endif)>
+                <input type="hidden" name="dst" value="$(link-status)" />
+                <input type="hidden" name="popup" value="false" />
+
+                <div class="input-group">
+                    <input name="username" type="text"
+                        placeholder="أدخل الكرت هنا"
+                        required />
+                </div>
+
+                <div class="input-group">
+                    <label>اختر السرعة المناسبة</label>
+                    <select name="speed">
+                        <option value="@256K/256K|">سرعة اقتصادية</option>
+                        <option value="@256K/512K|">سرعة عادية</option>
+                        <option value="@512K/1M|">سرعة متوسطة</option>
+                        <option value="@1M/4M|">سرعة عالية</option>
+                    </select>
+                </div>
+
+                <input name="password" type="hidden" value="123456" />
+                <button type="submit" class="btn-login">تسجيل الدخول</button>
+            </form>
+
+            <div style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
+                خدمة العملاء: 733797778 <br> م/ حمزة المقطري
+            </div>
+        </div>
+        <!-- Designer Credit Start -->
+        <div class="credit-section">
+            <span class="credit-label">تطوير وتصميم</span>
+            <div class="designer-name">م/عبدالله الاديمي</div>
+        </div>
+        <!-- Designer Credit End -->
+
+        <!-- Change this -->
+        <script src="js\swiper-bundle.min.js"></script>
+
         <script>
-                var error = "$(error)";
-                if (error.includes("simultaneous")) document.write("الكرت مستخدم في جهاز آخر");
-                else if (error.includes("invalid")) document.write("رمز الدخول غير صحيح");
-                else document.write("$(error)");
-            </script>
-      </div>
-      $(endif)
-
-      <!-- Login Form -->
-      <form name="login" action="$(link-login-only)" method="post" $(if chap-id)
-        onSubmit="return doLogin()" $(endif)>
-        <input type="hidden" name="dst" value="$(link-status)" />
-        <input type="hidden" name="popup" value="false" />
-
-        <div class="input-group">
-          <input name="username" type="text" placeholder="أدخل الكرت هنا"
-            required />
-        </div>
-
-        <div class="input-group">
-          <label>اختر السرعة المناسبة</label>
-          <select name="speed">
-            <option value="@256K/256K|">سرعة اقتصادية</option>
-            <option value="@256K/512K|">سرعة عادية</option>
-            <option value="@512K/1M|">سرعة متوسطة</option>
-            <option value="@1M/4M|">سرعة عالية</option>
-          </select>
-        </div>
-
-        <input name="password" type="hidden" value="123456" />
-        <button type="submit" class="btn-login">تسجيل الدخول</button>
-      </form>
-
-      <div style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
-        خدمة العملاء: 733797778 <br> م/ حمزة المقطري
-      </div>
-    </div>
-    <!-- Designer Credit Start -->
-    <div class="credit-section">
-      <span class="credit-label">تطوير وتصميم</span>
-      <div class="designer-name">م/عبدالله الاديمي</div>
-    </div>
-    <!-- Designer Credit End -->
-   
-
-    <!-- Swiper JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
         // 1. Clock
         function refrClock() {
             var d = new Date();
@@ -307,26 +327,29 @@
 
         // 4. doLogin Logic
         function doLogin() {
-            var x = document.login.username.value;
-            var arNums = {"٠":"0","١":"1","٢":"2","٣":"3","٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9"};
-            for (var key in arNums) { x = x.replace(new RegExp(key, "g"), arNums[key]); }
-            x = x.replace(/\s/g, "");
-            document.sendin.username.value = x + document.login.speed.value;
-            document.sendin.password.value = document.login.password.value;
-            document.sendin.submit();
+            var x = document.login.username.value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, function(a) {
+                return a.charCodeAt(0) & 15;
+            }).replace(/\s/g, "");
+
+            if (document.sendin) {
+                document.sendin.username.value = x + document.login.speed.value;
+                document.sendin.password.value = document.login.password.value;
+                document.sendin.submit();
+            }
             return false;
         }
+
     </script>
 
-    <!-- Hidden MikroTik form -->
-    $(if chap-id)
-    <form name="sendin" action="$(link-login-only)" method="post"
-      style="display:none">
-      <input type="hidden" name="username" />
-      <input type="hidden" name="password" />
-      <input type="hidden" name="dst" value="$(link-orig)" />
-    </form>
-    $(endif)
+        <!-- Hidden MikroTik form -->
+        $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post"
+            style="display:none">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+        </form>
+        $(endif)
 
-  </body>
+    </body>
 </html>
