@@ -11,8 +11,8 @@
         <meta http-equiv="pragma" content="no-cache" />
         <meta http-equiv="expires" content="-1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <script src="js/hotCookie.min.js"></script>
-        <script src="js/hotInImprover.min.js"></script>
+        <!-- <script src="js/hotCookie.min.js"></script>
+        <script src="js/hotInImprover.min.js"></script> -->
         <style>
         /* 1. Global Setup & Font */
         @font-face {
@@ -183,6 +183,7 @@
     letter-spacing: 1px;
 }
     </style>
+    <link rel="icon" href="data:,">
     </head>
 
     <body>
@@ -246,15 +247,14 @@
 
             <!-- Login Form -->
             <form name="login" action="$(link-login-only)" method="post" $(if
-                chap-id)
-                onSubmit="return doLogin()" $(endif)>
+                chap-id) onSubmit="return doLogin()" $(endif)>
                 <input type="hidden" name="dst" value="$(link-status)" />
                 <input type="hidden" name="popup" value="false" />
 
                 <div class="input-group">
-                    <input name="username" type="text"
-                        placeholder="أدخل الكرت هنا"
-                        required />
+                    <!-- Added id="uname" for hotCookie.min.js compatibility -->
+                    <input id="uname" name="username" type="text"
+                        placeholder="أدخل الكرت هنا" required />
                 </div>
 
                 <div class="input-group">
@@ -267,7 +267,10 @@
                     </select>
                 </div>
 
-                <input name="password" type="hidden" value="123456" />
+                <!-- Added id="paswd" for hotCookie.min.js compatibility -->
+                <input id="paswd" name="password" type="hidden"
+                    value="123456" />
+
                 <button type="submit" class="btn-login">تسجيل الدخول</button>
             </form>
 
@@ -326,19 +329,19 @@
         });
 
         // 4. doLogin Logic
-        function doLogin() {
-            var x = document.login.username.value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, function(a) {
-                return a.charCodeAt(0) & 15;
-            }).replace(/\s/g, "");
+         function doLogin() {
+        // Correctly reference the ID 'uname'
+        var x = document.getElementById('uname').value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, function(a) {
+            return a.charCodeAt(0) & 15;
+        }).replace(/\s/g, "");
 
-            if (document.sendin) {
-                document.sendin.username.value = x + document.login.speed.value;
-                document.sendin.password.value = document.login.password.value;
-                document.sendin.submit();
-            }
-            return false;
+        if (document.sendin) {
+            document.sendin.username.value = x + document.login.speed.value;
+            document.sendin.password.value = document.login.password.value;
+            document.sendin.submit();
         }
-
+        return false;
+    }
     </script>
 
         <!-- Hidden MikroTik form -->
