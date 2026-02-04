@@ -1,358 +1,204 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>الحناني نت - دخول</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الحناني نت - دخول</title>
 
-        <!-- Swiper CSS -->
-        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <!-- FIXED: Forward slashes for MikroTik compatibility -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
 
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta http-equiv="expires" content="-1" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <!-- <script src="js/hotCookie.min.js"></script>
-        <script src="js/hotInImprover.min.js"></script> -->
-        <style>
-        /* 1. Global Setup & Font */
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <style>
         @font-face {
             font-family: 'Almarai';
             src: url('fonts/Almarai.woff2') format('woff2');
             font-weight: normal;
         }
 
-        * {
-            box-sizing: border-box;
-            font-family: 'Almarai', sans-serif !important;
-        }
+        * { box-sizing: border-box; font-family: 'Almarai', sans-serif !important; }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100vh;
-            /* Deep Blue Radial Glow */
+            margin: 0; padding: 0; width: 100%; min-height: 100vh;
             background: radial-gradient(circle, #005bb7 0%, #002b5c 40%, #000a1a 100%);
             background-attachment: fixed;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: white; display: flex; flex-direction: column; align-items: center;
             overflow-x: hidden;
         }
 
-        /* 2. Ticker (Left-to-Right slow scroll) */
         .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 10px 0;
-            white-space: nowrap;
-            direction: ltr; 
+            width: 100%; overflow: hidden; background: rgba(0, 0, 0, 0.4);
+            padding: 10px 0; white-space: nowrap; direction: ltr; 
         }
 
-        .ticker {
-            display: inline-block;
-            animation: ticker-move 50s linear infinite;
-        }
-
-        .item {
-            display: inline-block;
-            padding: 0 50px;
-            font-size: 14px;
-            direction: rtl; 
-        }
+        .ticker { display: inline-block; animation: ticker-move 50s linear infinite; }
+        .item { display: inline-block; padding: 0 50px; font-size: 14px; direction: rtl; }
 
         @keyframes ticker-move {
             0% { transform: translate3d(-100%, 0, 0); }
             100% { transform: translate3d(100%, 0, 0); }
         }
 
-        /* 3. Glassmorphism Login Card */
         .glass-card {
-            width: 90%;
-            max-width: 420px;
+            width: 90%; max-width: 420px;
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 25px; padding: 25px; margin: 20px 0;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        /* 4. Swiper Customization */
-        .logo-swiper {
-            width: 100%;
-            padding: 10px 0;
-        }
-        .logo-swiper .swiper-slide {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-swiper img { width: 80%; height: 80%; object-fit: contain; }
-
-        .ad-swiper {
-            width: 100%;
-            padding: 40px 0;
-        }
-        .ad-swiper .swiper-slide {
-            width: 260px;
-            height: 320px;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
+        .ad-swiper { width: 100%; padding: 20px 0; }
+        .ad-swiper .swiper-slide { width: 260px; height: 320px; border-radius: 15px; }
         .ad-swiper img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
 
-        /* 5. Inputs & Buttons */
         .input-group { margin-bottom: 15px; text-align: right; }
         .input-group label { display: block; font-size: 12px; color: #ffcc00; margin-bottom: 5px; }
 
         input, select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
+            width: 100%; padding: 12px; border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            text-align: center;
-            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1); color: white;
+            text-align: center; font-size: 16px;
         }
-        select option { background: #001a3d; }
 
         .btn-login {
-            width: 100%;
-            padding: 15px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
+            width: 100%; padding: 15px; background: #000; color: white;
+            border: none; border-radius: 10px; font-size: 18px; font-weight: bold;
+            cursor: pointer; margin-top: 10px;
         }
-        .btn-login:hover { background: #222; transform: scale(1.02); }
 
         #clock { color: #ffcc00; font-size: 14px; margin: 10px 0; font-weight: bold; }
         .error-msg { color: #ff6b6b; font-size: 13px; margin: 10px 0; }
 
-
-        /* Designer Credit Styling */
-.credit-section {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.designer-name {
-    font-size: 18px;
-    font-weight: 800;
-    display: inline-block;
-    /* Shimmering Gold Gradient */
-    background: linear-gradient(to right, #ffffff 20%, #ffcc00 40%, #ffcc00 60%, #ffffff 80%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Glow effect */
-    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.4));
-    animation: shine 3s linear infinite;
-    cursor: default;
-}
-
-/* Shimmer Animation */
-@keyframes shine {
-    to {
-        background-position: 200% center;
-    }
-}
-
-.credit-label {
-    display: block;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 5px;
-    letter-spacing: 1px;
-}
+        .designer-name {
+            font-size: 18px; font-weight: 800; display: inline-block;
+            background: linear-gradient(to right, #ffffff 20%, #ffcc00 40%, #ffcc00 60%, #ffffff 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
     </style>
     <link rel="icon" href="data:,">
-    </head>
+</head>
 
-    <body>
+<body>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع خدمة إنترنت وتغطية متميزة.. تواصلوا معنا: 733797778</span>
+            <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع خدمة إنترنت وتغطية متميزة.. تواصلوا معنا: 733797778</span>
+        </div>
+    </div>
 
-        <!-- Ticker -->
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع
-                    خدمة
-                    إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا:
-                    733797778</span>
-                <span class="item">أهلاً بكم في شبكة الحناني نت.. نقدم لكم أسرع
-                    خدمة
-                    إنترنت وتغطية متميزة على مدار الساعة.. تواصلوا معنا:
-                    733797778</span>
+    <div class="glass-card">
+        <div class="swiper ad-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/ad1.jpg"></div>
+                <div class="swiper-slide"><img src="img/ad2.jpg"></div>
+                <div class="swiper-slide"><img src="img/ad3.jpg"></div>
             </div>
         </div>
 
-        <!-- Login Container -->
-        <div class="glass-card">
+        <h1 style="font-size: 20px; margin: 10px 0;">الحناني نت</h1>
+        <div id="clock"></div>
 
-            <!-- Lower Slider (Ads) -->
-            <div class="swiper ad-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="img/ad1.jpg"></div>
-                    <div class="swiper-slide"><img src="img/ad2.jpg"></div>
-                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-                    <div class="swiper-slide"><img src="img/ad3.jpg"></div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-            <h1 style="font-size: 20px; margin: 10px 0;">الحناني نت</h1>
-            <div id="clock"></div>
-
-            <!-- MikroTik Error Handling -->
-            $(if error)
-            <div class="error-msg">
-                <script type="text/javascript">
-                    var error = "$(error)";
-                    if (error == "simultaneous session limit reached") {
-                        document.write("الكرت مستخدم في جهـاز آخر");
-                    } else if (error == "invalid password") {
-                        document.write("كلمـة المرور غير صحيحـه");
-                    } else if (error == "no valid profile found") {
-                        document.write("انتهت صلاحية الرصيد");
-                    } else if (error.search("not found") != -1) {
-                        document.write("المستخدم غير موجود");	
-                    } else if (error == "uptime limit reached" || error == "download limit reached") {
-                        document.write("انتهى رصيـد هذا الكرت");
-                    } else if (error == "invalid Calling-Station-Id") {
-                        document.write("تم تخصيص الكرت لجهـاز آخر");
-                    } else {
-                        document.write("$(error)");
-                    }
-                </script>
-            </div>
-            $(endif)
-
-            <!-- Login Form -->
-            <form name="login" action="$(link-login-only)" method="post" $(if
-                chap-id) onSubmit="return doLogin()" $(endif)>
-                <input type="hidden" name="dst" value="$(link-status)" />
-                <input type="hidden" name="popup" value="false" />
-
-                <div class="input-group">
-                    <!-- Added id="uname" for hotCookie.min.js compatibility -->
-                    <input id="uname" name="username" type="text"
-                        placeholder="أدخل الكرت هنا" required />
-                </div>
-
-                <div class="input-group">
-                    <label>اختر السرعة المناسبة</label>
-                    <select name="speed">
-                        <option value="@256K/256K|">سرعة اقتصادية</option>
-                        <option value="@256K/512K|">سرعة عادية</option>
-                        <option value="@512K/1M|">سرعة متوسطة</option>
-                        <option value="@1M/4M|">سرعة عالية</option>
-                    </select>
-                </div>
-
-                <!-- Added id="paswd" for hotCookie.min.js compatibility -->
-                <input id="paswd" name="password" type="hidden"
-                    value="123456" />
-
-                <button type="submit" class="btn-login">تسجيل الدخول</button>
-            </form>
-
-            <div style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
-                خدمة العملاء: 733797778 <br> م/ حمزة المقطري
-            </div>
+        <!-- MikroTik Error Section -->
+        $(if error)
+        <div class="error-msg">
+            <script type="text/javascript">
+                var error = "$(error)";
+                if (error.includes("simultaneous")) document.write("الكرت مستخدم في جهاز آخر");
+                else if (error.includes("invalid")) document.write("رمز الدخول غير صحيح");
+                else document.write("$(error)");
+            </script>
         </div>
-        <!-- Designer Credit Start -->
-        <div class="credit-section">
-            <span class="credit-label">تطوير وتصميم</span>
-            <div class="designer-name">م/عبدالله الاديمي</div>
+        $(endif)
+
+        <!-- Login Form -->
+        <form name="login" action="$(link-login-only)" method="post" onSubmit="return doLogin()">
+            <input type="hidden" name="dst" value="$(link-status)" />
+            <input type="hidden" name="popup" value="false" />
+
+            <div class="input-group">
+                <input id="uname" name="username" type="text" value="$(username)" placeholder="أدخل الكرت هنا" required />
+            </div>
+
+            <div class="input-group">
+                <label>اختر السرعة المناسبة</label>
+                <select id="speed_select" name="speed">
+                    <option value="@256K/256K|">سرعة اقتصادية</option>
+                    <option value="@256K/512K|">سرعة عادية</option>
+                    <option value="@512K/1M|">سرعة متوسطة</option>
+                    <option value="@1M/4M|">سرعة عالية</option>
+                </select>
+            </div>
+
+            <input name="password" type="hidden" value="123456" />
+            <button type="submit" class="btn-login">تسجيل الدخول</button>
+        </form>
+
+        <div style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
+            خدمة العملاء: 733797778 <br> م/ حمزة المقطري
         </div>
-        <!-- Designer Credit End -->
+    </div>
 
-        <!-- Change this -->
-        <script src="js\swiper-bundle.min.js"></script>
+    <div class="credit-section">
+        <div class="designer-name">م/عبدالله الاديمي</div>
+    </div>
 
-        <script>
-        // 1. Clock
+    <!-- FIXED: Forward Slash -->
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <script>
         function refrClock() {
             var d = new Date();
-            var days = ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "يس", "الجمعة", "السبت"];
+            var days = ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت"];
             var months = ["يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"];
             document.getElementById("clock").innerHTML = days[d.getDay()] + " " + d.getDate() + " من " + months[d.getMonth()] + " " + d.getFullYear();
             setTimeout(refrClock, 1000);
         }
         refrClock();
 
-        // 2. Initialize Upper Logo Slider
-       // 2. Initialize Upper Logo Slider (Moves every 3 seconds)
-        var logoSwiper = new Swiper('.logo-swiper', {
-            effect: 'coverflow',
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            loop: true,
-            autoplay: {
-                delay: 3000, 
-                disableOnInteraction: false 
-            },
-            coverflowEffect: { rotate: 30, stretch: 0, depth: 100, modifier: 1, slideShadows: false }
-        });
-
-        // 3. Initialize Lower Ad Slider (Moves every 4 seconds)
         var adSwiper = new Swiper('.ad-swiper', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false
-            },
-            coverflowEffect: { rotate: 50, stretch: 0, depth: 200, modifier: 1, slideShadows: true },
-            pagination: { el: '.swiper-pagination', clickable: true }
+            effect: 'coverflow', loop: true, autoplay: { delay: 4000 },
+            centeredSlides: true, slidesPerView: 'auto',
+            coverflowEffect: { rotate: 50, stretch: 0, depth: 200, modifier: 1, slideShadows: true }
         });
 
-        // 4. doLogin Logic
-         function doLogin() {
-        // Correctly reference the ID 'uname'
-        var x = document.getElementById('uname').value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, function(a) {
-            return a.charCodeAt(0) & 15;
-        }).replace(/\s/g, "");
+        function doLogin() {
+            // Aggressive Cleanup
+            var userField = document.getElementById('uname');
+            var rawUser = userField.value.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, function(a) {
+                return a.charCodeAt(0) & 15;
+            }).replace(/\s/g, "");
 
-        if (document.sendin) {
-            document.sendin.username.value = x + document.login.speed.value;
-            document.sendin.password.value = document.login.password.value;
-            document.sendin.submit();
+            var selectedSpeed = document.getElementById('speed_select').value;
+
+            // Check if MikroTik CHAP form exists
+            if (document.sendin) {
+                document.sendin.username.value = rawUser + selectedSpeed;
+                document.sendin.password.value = "123456"; // Match hidden pass
+                document.sendin.submit();
+                return false;
+            }
+            
+            // Fallback for PAP
+            userField.value = rawUser + selectedSpeed;
+            return true;
         }
-        return false;
-    }
     </script>
 
-        <!-- Hidden MikroTik form -->
-        $(if chap-id)
-        <form name="sendin" action="$(link-login-only)" method="post"
-            style="display:none">
-            <input type="hidden" name="username" />
-            <input type="hidden" name="password" />
-            <input type="hidden" name="dst" value="$(link-orig)" />
-        </form>
-        $(endif)
+    <!-- Hidden MikroTik CHAP Form -->
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+    </form>
+    $(endif)
 
-    </body>
+</body>
 </html>
